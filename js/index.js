@@ -15,15 +15,17 @@ const handleCategory = async () => {
    }); 
 }
 const handleLoadNews = async (categoryId) =>{
+  console.log(categoryId)
    const response = await fetch(`https://openapi.programming-hero.com/api/news/category/${categoryId}`)
    const data = await response.json();
 
    const cardContainer = document.getElementById('card-container')
+   cardContainer.innerHTML = "";
    data.data?.forEach((news)=> {
      console.log(news)
       const div =document.createElement('div')
       div.innerHTML=`
-      <div class="card w-96 bg-base-100 shadow-xl">
+      <div class="card w-96 max-w-xl mx-auto bg-base-100 shadow-xl">
       <figure>
         <img src=${news?.image_url}/>
       </figure>
@@ -54,7 +56,8 @@ const handleLoadNews = async (categoryId) =>{
             </div>
           </div>
           <div class="card-actions justify-end">
-            <button class="btn btn-primary">Details</button>
+      
+            <button onclick=handleModel('${news._id}') class="btn">open modal</button>
           </div>
         </div>
       </div>
@@ -64,4 +67,24 @@ const handleLoadNews = async (categoryId) =>{
    })
 }
 
+const handleModel = async (newsID) => {
+  console.log(newsID)
+
+  const response = await fetch(`https://openapi.programming-hero.com/api/news/${newsID}`);
+  const data = await response.json();
+  console.log(data.data[0]);
+
+  const modalContainer = document.getElementById('model-detail-container')
+    const head = document.getElementById('head')
+    head.innerText = data.data[0].title
+
+  modalContainer.innerHTML=`
+  <img src="${data.data[0].image_url}"/>
+
+  `
+     const modal = document.getElementById('my_modal_1');
+     modal.showModal();
+}
+
 handleCategory()
+handleLoadNews("01")

@@ -60,7 +60,7 @@
     </div>
   </div>
 
-  <div id="card-container" class="grid grid-cols-2 gap-4">
+  <div id="card-container" class="grid grid-cols-1  md:grid-cols-2 gap-4   ">
     <!-- <div class="card w-96 bg-base-100 shadow-xl">
       <figure>
         <img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" />
@@ -93,6 +93,21 @@
     </div> -->
 
   </div>
+  <!-- Open the modal using ID.showModal() method -->
+
+<dialog id="my_modal_1" class="modal">
+  <form method="dialog" class="modal-box">
+    <h3 id="head" class="font-bold text-lg">Hello!</h3>
+   
+    <div id="model-detail-container">
+
+    </div>
+    <div  class="modal-action">
+      <!-- if there is a button in form, it will close the modal -->
+      <button class="btn">Close</button>
+    </div>
+  </form>
+</dialog>
 
   <script src="js/index.js"></script>
 </body>
